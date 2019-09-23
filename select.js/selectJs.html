@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Select js</title>
+	<meta name="description" content="">
+	<meta name="robots" content="noindex"> 
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="./selectJs.css">
+</head>
+<body>
+	<div id="wrapper">
+		<div class="main">
+			<form action="#">
+				<select class="selectJs" placeholder="Choose something...">
+					<option value="0">default</option>
+					<option value="1">lorem 1</option>
+					<option value="2">lorem 2</option>
+					<option value="3">lorem 3</option>
+				</select>
+
+				<select class="selectJs selNew" placeholder="Choose one...">
+					<option value="0">default</option>
+					<option value="1">adsadsada 1</option>
+					<option value="2">lordadsadadem 2</option>
+					<option value="3">asd 3</option>
+					<option value="4">asasd 4</option>
+				</select>
+
+				<!-- Structural HTML after initialized plugin -->
+
+		<!-- <div class="selectJs">
+				<div class="select-bar">
+					<span class="selected-value">Choose something...</span>
+				</div>
+				<div class="select-options">
+					<span class="option default" data-id="0">Choose something...</span>
+					<span class="option" data-id="1">lorem 1</span>
+					<span class="option" data-id="2">lorem 2</span>
+					<span class="option" data-id="3">lorem 3</span>
+				</div>
+			</div> -->
+			</form>
+		</div>
+	</div>
+	
+	<script src="./selectJs.min.js"></script>
+	<script>
+
+		var selectJs = new selectJs({
+			element: '.selectJs',
+            txtFromPlaceholder: true,
+            easing: true,
+        });
+
+		// Destroy any existing initializations
+        // selectJs.destroy();
+
+        // selectJs.init();
+        // Supports - All modern browsers, IE 10 and latest
+        // There are some problems with DOMSubtreeModified in (IE 10) when content will be load from ajax,
+        // maybe will cause infinite loop
+
+	</script>
+
+</body>
+</html>

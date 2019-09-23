@@ -1,0 +1,70 @@
+body {
+	scroll-behavior: smooth;
+	position: relative;
+	overflow: hidden;
+	background: #333;
+	color: #777;
+	margin: 0;
+	&.breakpoint {
+		overflow: auto;
+	}
+}
+
+.main {
+	width: 200px;
+	padding: 20px;
+}
+
+.scroll_wrap_js {
+	transition: opacity .5s ease;
+	width: 16px;
+	min-width: 4px;
+	max-width: 26px;
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	top: 0;
+	background: rgba(120, 120, 120, .7);
+	background: #81987a;
+	border: 1px solid #999;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	overflow: hidden;
+
+	&.breakpoint {
+		display: none !important;
+	}
+
+	&.hide {
+		opacity: 0 !important;
+	}
+}
+
+.scroll_js {
+	-webkit-transition: background .2s ease;
+	-o-transition: background .2s ease;
+	transition: background .2s ease;
+	width: 14px;
+	min-width: 2px;
+	max-width: 24px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	height: auto;
+	background: rgba(255, 255, 255, .7);
+	background: #63f168;
+	border: 1px solid #222;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	cursor: pointer;
+
+	&:hover {
+		background: #43ce48;
+	}
+	
+	&:active {
+		background: green;
+	}
+}

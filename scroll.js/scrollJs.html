@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Scroll js</title>
+	<meta name="description" content="">
+	<meta name="robots" content="noindex"> 
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="./scrollJs.css">
+</head>
+<body>
+	<div id="wrapper">
+		<div class="main">
+			<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque suscipit sunt, officiis ratione ab, illo illum. Natus harum impedit explicabo esse provident recusandae consequuntur? Saepe, explicabo, animi? Nihil, ullam, libero.</div>
+			<div>Quidem repellendus sapiente totam explicabo beatae, odit nemo, fugit quos modi nobis atque, voluptatem facilis tempora nesciunt. Reiciendis voluptatem excepturi blanditiis a suscipit reprehenderit quis dignissimos odio iusto, veniam, nesciunt.</div>
+			<div>Deleniti architecto quisquam et eligendi necessitatibus quae ullam cum omnis, quia nostrum aspernatur reprehenderit inventore a magni quidem suscipit repellat? Dignissimos, ad, necessitatibus. Vel sint dolorum dicta ab, beatae repudiandae.</div>
+			<div>Nobis ipsa voluptatem id quaerat sit aliquid, beatae deserunt eum dolore, quam, ut fuga dolorem at, culpa perspiciatis tenetur repudiandae amet quia saepe itaque ipsam omnis minima voluptatum enim. Vero.</div>
+			<div>Voluptatum cumque, excepturi odio libero esse, eligendi consectetur sint non, corporis, commodi soluta. Ullam cumque placeat id magnam aliquam non molestias repellendus a, est animi officia, dolorem tempora praesentium debitis.</div>
+			<div>Dicta blanditiis distinctio laborum, pariatur at laboriosam aperiam, veniam impedit voluptates alias non voluptas dignissimos dolores quis quasi consequuntur eos, quisquam provident. Est ipsa atque saepe nostrum ipsum iusto velit!</div>
+			<div>Magni, consequatur, expedita suscipit tempore sit ipsam optio ducimus ea eveniet unde. Libero dolore reiciendis voluptatem, atque maxime nesciunt illum, possimus sapiente consequuntur repellendus porro nemo veniam fugit praesentium adipisci.</div>
+			<div>Nulla natus commodi ipsa nisi, ipsum veniam dicta cupiditate. Blanditiis in, id aliquam possimus cupiditate dolorem consectetur quos fugiat esse, dolor, molestiae aspernatur voluptatum officiis ullam earum et voluptates similique.</div>
+			<div>Praesentium deleniti vel, ad ex nobis sit error. Cumque praesentium cupiditate recusandae at, earum modi ullam nesciunt minus adipisci! Unde voluptatem delectus est voluptatum ab deserunt dolore corrupti minima illo!</div>
+		</div>
+	</div>
+
+	<script src="./scrollJs.min.js"></script>
+
+	<script>
+
+		var scrollJs = new scrollJs({
+            hideSlider: false,
+            duration: 1500,
+            destroy: true,
+            destroyOn: 768,
+            onInit: function() {
+            	console.log('onInit callback');
+            },
+
+            onDrug: function() {
+            	console.log('onDrug callback');
+            },
+
+            onScroll: function() {
+            	console.log('onScroll callback');
+            },
+            
+            onDestroy: function() {
+            	console.log('onDestroy callback', this.options.destroyOn = 1024);
+            },
+        });
+
+        // Supports - All modern browsers, IE 11 and latest
+
+	</script>
+
+</body>
+</html>

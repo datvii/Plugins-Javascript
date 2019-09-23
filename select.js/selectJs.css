@@ -1,0 +1,156 @@
+body {
+	position: relative;
+	background: #333;
+	color: #777;
+	margin: 0;
+	padding: 20px;
+}
+
+select {
+	width: 200px;
+}	
+
+select.valid {
+	background: green;
+}
+
+select.invalid {
+	background: red;
+}
+
+select.selectJs {
+	position: fixed;
+	left: -9999px;
+	z-index: -999;
+	opacity: 0;
+	visibility: hidden;
+}
+
+.selectJs {
+	background: #fff;
+	border: 1px solid #fff;
+	margin-bottom: 10px;
+	max-width: 250px;
+	color: #000;
+	cursor: pointer;
+}
+
+.select-bar {
+	-webkit-transition: background .3s ease;
+	-o-transition: background .3s ease;
+	transition: background .3s ease;
+	padding: 5px 10px;
+	background: #999;
+	position: relative;
+	min-height: 30px;
+}
+
+.select-bar:focus,
+.select-bar:active {
+	outline: 1px solid cornflowerblue;
+}
+
+.selected-value {
+	line-height: 2;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	display: block;
+	white-space: nowrap;
+	padding-right: 15px;
+}
+
+.select-bar:after {
+	-webkit-transition: all .3s;
+	-o-transition: all .3s;
+	transition: all .3s;
+	content: '\203A';
+	position: absolute;
+	top: 50%;
+	right: 10px;
+	font-size: 20px;
+	line-height: 1;
+	font-family: cursive;
+	-webkit-transform: translate(0, -50%) rotate(90deg);
+	-ms-transform: translate(0, -50%) rotate(90deg);
+	-o-transform: translate(0, -50%) rotate(90deg);
+	transform: translate(0, -50%) rotate(90deg);
+}
+
+.select-bar:hover:after {
+	color: #fff;
+}
+
+.select-bar.active:after {
+	-webkit-transform: translate(0, -50%) rotate(270deg);
+	-ms-transform: translate(0, -50%) rotate(270deg);
+	-o-transform: translate(0, -50%) rotate(270deg);
+	transform: translate(0, -50%) rotate(270deg);
+}
+
+.select-bar:hover {
+	background: #555;
+}
+
+.select-bar.active + .select-options {
+	display: block;
+}
+
+.select-options {
+	background: #777;
+	display: none;
+	max-height: 250px;
+	overflow-x: auto;
+}
+
+.selectJs.select-open .select-options {
+	display: block;
+}
+
+.selectJs.select-open .select-bar:after {
+	-webkit-transform: translate(0, -50%) rotate(270deg);
+	-ms-transform: translate(0, -50%) rotate(270deg);
+	-o-transform: translate(0, -50%) rotate(270deg);
+	transform: translate(0, -50%) rotate(270deg);
+}
+
+.select-options .option.default {
+	opacity: 0;
+	visibility: hidden;
+	position: fixed;
+	z-index: -9999;
+	left: -9999px;
+}
+
+.select-options.select-easing {
+	-webkit-transition: max-height .3s ease, height .3s ease;
+	-o-transition: max-height .3s ease, height .3s ease;
+	transition: max-height .3s ease, height .3s ease;
+	padding: 0;
+	display: block;
+	max-height: 0;
+	height: auto;
+	overflow: hidden;
+}
+
+.select-options.select-easing.select-open {
+	max-height: 250px;
+	overflow-y: hidden;
+}
+
+.option {
+	-webkit-transition: background .3s ease;
+	-o-transition: background .3s ease;
+	transition: background .3s ease;
+	padding: 5px 10px;
+	display: block;
+}
+
+.option:hover {
+	background: #fff;
+}
+
+.selectJs:after {
+	content: '';
+	right: 0;
+	top: 10px;
+}

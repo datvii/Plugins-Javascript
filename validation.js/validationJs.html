@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Validation js</title>
+	<meta name="description" content="">
+	<meta name="robots" content="noindex"> 
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="./validationJs.css">
+</head>
+<body>
+	<div id="wrapper">
+		<div class="main">
+			<form action="#" class="validation">
+				<h1>First form</h1>
+				<div class="label">
+					<input data-validate="required minLen" data-min="5" type="text" placeholder="Name">
+				</div>
+				<div class="label">
+					<input data-validate="required email" type="email" placeholder="E-mail">
+				</div>
+				<div class="label">
+					<input data-validate="required equal" type="password" placeholder="Pass">
+				</div>
+				<div class="label">
+					<input data-validate="required equal" type="password" placeholder="Repeat pass">
+				</div>
+				<div class="label">
+					<textarea data-validate="required minLen maxLen number" data-min="5" data-max="15" cols="30" rows="10" placeholder="Message"></textarea>
+				</div>
+				<div class="label">
+					<input data-validate="required checkbox" type="checkbox">
+				</div>
+				<div class="label">
+					<input data-validate="required radio" type="radio">
+				</div>
+				<div class="label">
+					<select data-validate="required select" placeholder="Choose gender">
+						<option value=""></option>
+						<option value="lorem1">lorem1</option>
+						<option value="lorem2">lorem2</option>
+					</select>
+				</div>
+				<div class="label">
+					<input type="submit" value="Submit">
+				</div>
+			</form>
+			
+			<section>
+				<div>
+					<form action="#" class="validation">
+						<h1>Second form</h1>
+						<div class="label">
+							<input data-validate="required minLen" type="text" placeholder="Name">
+						</div>
+						<div class="label">
+							<input data-validate="required minLen email" type="email" placeholder="E-mail">
+						</div>
+						<div class="label">
+							<input type="password" placeholder="Pass">
+						</div>
+						<div class="label">
+							<input type="password" placeholder="Repeat pass">
+						</div>
+						<div class="label">
+							<textarea cols="30" rows="10" placeholder="Message"></textarea>
+						</div>
+						<div class="label">
+							<input type="checkbox">
+							<input type="radio">
+						</div>
+						<div class="label">
+							<select placeholder="Choose gender">
+								<option value="lorem1">lorem1</option>
+								<option value="lorem2">lorem2</option>
+							</select>
+						</div>
+						<div class="label">
+							<input type="submit" value="Submit">
+						</div>
+					</form>
+				</div>
+			</section>
+			<section>
+				<div>
+					<form action="#" class="validation">
+						<h1>Third form</h1>
+						<div class="label">
+							<input class="asdd lolo dese" data-validate="required equal" type="password" placeholder="Pass">
+						</div>
+						<div class="label">
+							<input class="disable none" data-validate="required equal" type="password" placeholder="Repeat pass">
+						</div>
+						<div class="label">
+							<input data-validate="required equal" type="password" placeholder="Repeat pass">
+						</div>
+						<div class="label">
+							<textarea cols="30" rows="10" placeholder="Message"></textarea>
+						</div>
+						<div class="label">
+							<input type="checkbox">
+						</div>
+						<div class="label">
+							<input type="radio">
+						</div>
+						<div class="label">
+							<select placeholder="Choose gender">
+								<option value="lorem1">lorem1</option>
+								<option value="lorem2">lorem2</option>
+							</select>
+						</div>
+						<div class="label">
+							<input type="submit" value="Submit">
+						</div>
+					</form>
+				</div>
+			</section>
+		</div>
+	</div>
+	<script src="./validationJs.js"></script>
+	<script>
+		var validationJs;
+
+		document.addEventListener('DOMContentLoaded', function() {
+			try {
+
+				validationJs = new validationJs({
+					element: '.validation', //target element
+					parent: true, //add active class to parent
+					keypress: true, //turn on keypress event
+					resetForm: true, //reset form to default
+					submit: false, //submit form or not
+					submitDelay: true, //delay after click on submit button
+					delay: 2000, //delay in seconds after click on submit button
+					showErrors: true, //show error msg
+					successMsg: true, //show success msg after validation of form
+		            msg: 'Success!!!', //Txt of success msg
+		            closeText: '', //&cross; by default
+		            redirect: [false, '/'], //allow or disallow redirect, redirect to url 
+		            errors: [ //type of errors
+			            {'required': 'Field is required'},
+			            {'number': 'Only numbers'},
+			            {'email': 'Incorrect email'},
+			            {'checkbox': 'Field(s) not checked'},
+			            {'radio': 'Field(s) not checked'},
+			            {'select': 'Please select something'},
+			            {'equal': "Fields aren't equal"},
+			            {'minLen': 'Min length is 5 symbols'},
+			            {'maxLen': 'Max length is 15 symbols'},
+			            ],
+		        });
+
+			} catch(e) {
+				console.log(e)
+				throw e;
+			}
+
+		});
+
+		//Supports all modern browsers, IE 10 and latest
+			
+
+	</script>
+
+</body>
+</html>
