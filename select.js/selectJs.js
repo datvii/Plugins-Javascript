@@ -62,12 +62,23 @@
 
     	function attachHandlers(e) {
     		var target = e ? e.target : window.event.srcElement; //cross-browser solution
+            var cl = typeof(self.options.activeClass) === 'string' ? self.options.activeClass : 'option-active' || 'option-active';
 
 			if (e.target.matches(self.options.element + ' *:not(.option)')) {
 
 				try {
+                    if (self.getClosest(target, '.select-bar') === null) {
+                        return;
+                    }
+
 					var content = self.getClosest(target, '.select-bar').nextSibling,
-						sct = self.getClosest(target, self.options.element);
+                        sct = self.getClosest(target, self.options.element);
+
+                    if (self.getClosest(target, self.options.element) && self.getClosest(target, self.options.element).classList.contains('select-open')) {
+                        self.isOutsideClick(false);
+                    } else {
+                        self.isOutsideClick(true);
+                    }
 
 					self.addScroll(content);
 					content.classList.toggle('select-open');
@@ -80,6 +91,7 @@
 				
 				try {
 					var opts = self.getClosest(target, '.select-options'),
+                        optsInOneSel = opts.children,
 						sct = self.getClosest(target, self.options.element),
 						txt = target.innerText || target.innerContent,
 						tagSelect = sct.previousSibling,
@@ -93,11 +105,23 @@
 					activeEl.innerText = txt;
 					tagSelect.selectedIndex = attr;
 
+                    if (optsInOneSel) {
+                        for (var i = 0; i < optsInOneSel.length; i++) {
+                            optsInOneSel[i].classList.remove(cl);
+                        }
+                    }
+
+                    self.addActiveToOption(e.target, self.options.activeClass);
+
 				} catch(err) {
 					throw err;
 				}
 
 			}
+
+             if (!e.target.matches(self.options.element + ' *')) {
+                self.isOutsideClick(true);
+            }
 
     	}
 
@@ -182,6 +206,16 @@
 					selLen = scts[i].length,
 					optLen = scts[i].children.length;
 
+                    ;[].forEach.call(scts[i].children, function(_, k) {
+                        _.setAttribute('data-id', k);
+                    });
+
+                    var selectedOpt = document.querySelectorAll('option:checked', scts[i]);
+
+                    ;[].forEach.call(selectedOpt, function(_) {
+                        _.classList.add('option-selected');
+                    }.bind(this));
+
 				select.className = (this.options.element).slice(1) + ' ' + (this.options.element).slice(1) + '-initialized';
 				select.setAttribute('data-select-id', i);
 				scts[i].setAttribute('data-select-id', i);
@@ -195,13 +229,7 @@
 
 				for (var j = 0; j < optLen; j++) {
 					var options = document.createElement('span'),
-						placeholder = scts[i].getAttribute('placeholder');
-
-					if (this.options.txtFromPlaceholder) {
-						val.innerHTML = placeholder;
-					} else {
-						val.innerHTML = scts[i].children[0].innerText;
-					}
+						placeholder = scts[i].getAttribute('data-placeholder');
 					
 					child = scts[i].children[j].innerHTML;
 					options.innerHTML = child;
@@ -212,7 +240,20 @@
 
 					this.addEasing(content);
 
+                    if (scts[i].children[j].classList.contains('option-selected')) {
+                        if (this.isSelected(scts[i].children[j])) {
+                            options.className += ' option-active';
+                            val.innerHTML = scts[i].children[j].innerText;
+                        }
+                    }
+
 					if (j === 0) {
+                        if (this.options.txtFromPlaceholder) {
+                            val.innerHTML = placeholder;
+                        } else {
+                            val.innerHTML = scts[i].children[0].innerText;
+                        }
+
 						options.className += ' default';
 					}
 				}
@@ -243,8 +284,23 @@
 
     	},
 
+        /**
+         * Check whether the element selected.
+         * @public
+         * @param {Element} el - Dom element
+         * @returns {Boolean}
+         */
+
+        isSelected: function(el) {
+            if (el && el.selected) {
+                return true;
+            } else {
+                return false;
+            }
+        },
+
     	/**
-		 * Adding easing the current select.
+		 * Adding easing to the current select.
 		 * @public
 		 * @param {Element} el - Dom element
 		 */
@@ -257,8 +313,25 @@
 
     	},
 
+        /**
+         * Check whether the click outside.
+         * @public
+         * @param {Boolean} outside
+         */
+
+        isOutsideClick: function(outside) {
+            var scts = document.querySelectorAll('.select-open'),
+                i = 0;
+
+            if (outside) {
+                for (; i < scts.length; i++) {
+                    scts[i].classList.remove('select-open');
+                }
+            }
+        },
+
     	/**
-		 * Adding scroll the current select.
+		 * Adding scroll to the current select.
 		 * @public
 		 * @param {Element} el - Dom element
 		 */
@@ -297,6 +370,19 @@
     		});
 
     	},
+
+        /**
+         * Adding active class to the selected option.
+         * @public
+         * @param {Element} el - Dom element
+         */
+        addActiveToOption: function(el, newClass) {
+            if (el) {
+                var cl = typeof(newClass) === 'string' ? newClass : 'option-active' || 'option-active';
+
+                el.classList.add(cl);
+            }
+        },
 
     	getClosest: function (elem, selector) {
 
@@ -352,6 +438,8 @@
     	element: '.selectJs',
     	txtFromPlaceholder: true,
     	easing: true,
+        activeClass: 'option-active',
+        outsideClick: true
     }
 
     //

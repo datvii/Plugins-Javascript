@@ -145,6 +145,10 @@ select.selectJs {
 	display: block;
 }
 
+.option.option-active {
+	background: #888;
+}
+
 .option:hover {
 	background: #fff;
 }
